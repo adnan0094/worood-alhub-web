@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="موقع ورود الحب - معرض صور الورود والطبيعة الجميلة مع ميزات تفاعلية">
+    <meta name="keywords" content="ورود, صور, طبيعة, حب, رومانسية">
+    <meta name="author" content="Adnan">
+    <title>🌹 ورود الحب - معرض الورود والطبيعة</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🌹</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🌹 ورود الحب</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#gallery" class="nav-link">المعرض</a></li>
+                <li><a href="#favorites" class="nav-link">المفضلة</a></li>
+                <li><a href="#about" class="nav-link">عن الموقع</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>أهلاً وسهلاً في ورود الحب</h2>
+            <p>استمتع بمعرض صور الورود والطبيعة الجميلة</p>
+            <button class="btn btn-primary" onclick="scrollToGallery()">استكشف المعرض</button>
+        </div>
+        <div class="hero-image">
+            <div class="floating-rose">🌹</div>
+        </div>
+    </section>
+
+    <!-- Main Image Display -->
+    <section class="main-display">
+        <div class="container">
+            <div class="image-container">
+                <img id="mainImage" src="" alt="صورة الورود" class="main-image">
+                <div class="image-info">
+                    <h3 id="imageName"></h3>
+                    <p id="imageDesc"></p>
+                    <div class="image-meta">
+                        <span id="imageCategory"></span>
+                        <span id="imageCounter"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="previousImage()">← السابقة</button>
+                <button class="btn btn-success" onclick="randomImage()">🎲 عشوائية</button>
+                <button class="btn btn-danger" id="favoriteBtn" onclick="toggleFavorite()">❤️ إضافة</button>
+                <button class="btn btn-primary" onclick="nextImage()">التالية →</button>
+            </div>
+
+            <!-- Quote -->
+            <div class="quote-box">
+                <p id="quote" class="quote-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>المعرض</h2>
+            
+            <!-- Category Filter -->
+            <div class="category-filter">
+                <button class="filter-btn active" onclick="filterGallery('all')">الكل</button>
+                <button class="filter-btn" onclick="filterGallery('red')">🔴 حمراء</button>
+                <button class="filter-btn" onclick="filterGallery('pink')">💗 وردية</button>
+                <button class="filter-btn" onclick="filterGallery('white')">⚪ بيضاء</button>
+                <button class="filter-btn" onclick="filterGallery('yellow')">🟡 صفراء</button>
+                <button class="filter-btn" onclick="filterGallery('nature')">🌿 طبيعة</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+    </section>
+
+    <!-- Favorites Section -->
+    <section id="favorites" class="favorites-section">
+        <div class="container">
+            <h2>صوري المفضلة</h2>
+            <div class="favorites-grid" id="favoritesGrid">
+                <div class="empty-state">
+                    <p>💔 لا توجد صور مفضلة بعد</p>
+                    <p class="small">أضف صورك المفضلة بالضغط على قلب الحب</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>عن الموقع</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <h3>✨ المميزات</h3>
+                    <ul>
+                        <li>معرض صور متكامل مع 20+ صورة جميلة</li>
+                        <li>تصنيف الصور حسب الألوان والفئات</li>
+                        <li>نظام المفضلة مع حفظ محلي</li>
+                        <li>واجهة جميلة وسهلة الاستخدام</li>
+                        <li>اقتباسات رومانسية عن الحب والورود</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <h3>🎨 التصميم</h3>
+                    <p>تم تصميم الموقع بألوان وردية جميلة تعكس جمال الورود والحب. الموقع متجاوب مع جميع الأجهزة والشاشات.</p>
+                </div>
+                <div class="about-card">
+                    <h3>📱 متوافق</h3>
+                    <p>يعمل الموقع بشكل مثالي على جميع الأجهزة: الحاسوب، الجوال، والتابلت.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ورود الحب - جميع الحقوق محفوظة</p>
+            <p>صنع بـ ❤️ بواسطة <a href="https://github.com/adnan0094" target="_blank">Adnan</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

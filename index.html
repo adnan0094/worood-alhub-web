@@ -21,7 +21,7 @@
                 <li><a href="#home" class="nav-link active">الرئيسية</a></li>
                 <li><a href="#gallery" class="nav-link">المعرض</a></li>
                 <li><a href="#favorites" class="nav-link">المفضلة</a></li>
-                <li><a href="#about" class="nav-link">عن الموقع</a></li>
+                <li><a href="#upload" class="nav-link">رفع صورة</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -64,6 +64,7 @@
                 <button class="btn btn-success" onclick="randomImage()">🎲 عشوائية</button>
                 <button class="btn btn-danger" id="favoriteBtn" onclick="toggleFavorite()">❤️ إضافة</button>
                 <button class="btn btn-primary" onclick="nextImage()">التالية →</button>
+                <button class="btn btn-warning" onclick="openCameraModal()">📷 كاميرا</button>
             </div>
 
             <!-- Quote -->
@@ -106,32 +107,45 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
+    <!-- Upload Section -->
+    <section id="upload" class="upload-section">
         <div class="container">
-            <h2>عن الموقع</h2>
-            <div class="about-content">
-                <div class="about-card">
-                    <h3>✨ المميزات</h3>
-                    <ul>
-                        <li>معرض صور متكامل مع 20+ صورة جميلة</li>
-                        <li>تصنيف الصور حسب الألوان والفئات</li>
-                        <li>نظام المفضلة مع حفظ محلي</li>
-                        <li>واجهة جميلة وسهلة الاستخدام</li>
-                        <li>اقتباسات رومانسية عن الحب والورود</li>
-                    </ul>
+            <h2>رفع صورة جديدة</h2>
+            <div class="upload-container">
+                <div class="upload-box">
+                    <input type="file" id="fileInput" accept="image/*" onchange="handleFileUpload(event)">
+                    <label for="fileInput" class="upload-label">
+                        <span class="upload-icon">📤</span>
+                        <p>اضغط هنا أو اسحب صورة</p>
+                    </label>
                 </div>
-                <div class="about-card">
-                    <h3>🎨 التصميم</h3>
-                    <p>تم تصميم الموقع بألوان وردية جميلة تعكس جمال الورود والحب. الموقع متجاوب مع جميع الأجهزة والشاشات.</p>
-                </div>
-                <div class="about-card">
-                    <h3>📱 متوافق</h3>
-                    <p>يعمل الموقع بشكل مثالي على جميع الأجهزة: الحاسوب، الجوال، والتابلت.</p>
+                <button class="btn btn-primary" onclick="openCameraModal()">📷 التقاط من الكاميرا</button>
+            </div>
+            <div id="uploadPreview" class="upload-preview" style="display: none;">
+                <img id="previewImage" src="" alt="معاينة">
+                <div class="upload-actions">
+                    <button class="btn btn-success" onclick="sendToTelegram()">📤 إرسال إلى تليجرام</button>
+                    <button class="btn btn-secondary" onclick="cancelUpload()">❌ إلغاء</button>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Camera Modal -->
+    <div id="cameraModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeCameraModal()">&times;</span>
+            <h2>التقاط صورة من الكاميرا</h2>
+            <div class="camera-container">
+                <video id="cameraVideo" autoplay playsinline></video>
+                <canvas id="cameraCanvas" style="display: none;"></canvas>
+            </div>
+            <div class="camera-controls">
+                <button class="btn btn-primary" onclick="capturePhoto()">📸 التقاط صورة</button>
+                <button class="btn btn-secondary" onclick="closeCameraModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
